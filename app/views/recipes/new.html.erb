@@ -1,9 +1,21 @@
+<% if @recipe.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+ 
+    <ul>
+    <% @recipe.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @recipe do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %><br>
 
     <%= f.fields_for :ingredients do |ingr| %>
-        <%= ingr.label :name %>
+        <%= ingr.label :name, "Ingredient" %>
         <%= ingr.text_field :name %><br>
 
         <%= ingr.label :quantity %>
